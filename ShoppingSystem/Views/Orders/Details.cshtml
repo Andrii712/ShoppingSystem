@@ -1,0 +1,41 @@
+﻿@model ShoppingSystem.Models.Entity.OrderModel
+<div>
+
+    <h4>OrderDetails</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <span>Product</span>
+                </th>
+                <th>
+                    <span>Quantity</span>
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (OrderDetailsModel ord_det in Model.OrderDetails)
+            {
+                <tr>
+                    <td>
+                        @*@Html.DisplayFor(model => model.OrderDetails.ProductModel.Name)*@
+                        <span>@ord_det.ProductModel.Name</span>
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(model => model.OrderDetails.Quantity)*@
+                        <span>
+                            @ord_det.Quantity
+                        </span>
+                    </td>
+
+                    <td>
+                        <a asp-controller="OrderDetails" asp-action="Edit" asp-route-id="@ord_det.Id">Edit</a> |
+                        <a asp-controller="OrderDetails" asp-action="Delete" asp-route-id="@ord_det.Id">Delete</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

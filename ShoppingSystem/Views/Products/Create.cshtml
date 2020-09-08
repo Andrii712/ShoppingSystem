@@ -1,0 +1,21 @@
+﻿@model ShoppingSystem.Models.Entity.ProductModel
+
+@{
+    ViewData["Title"] = "Create Product";
+}
+
+<h1 class="display-4 mb-4">Create</h1>
+
+@{
+    ViewData["Action"] = "Create";
+    ViewData["submitBtnHeader"] = "Create";
+    await Html.RenderPartialAsync("ProductCreateEditForm", Model, ViewData);
+}
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

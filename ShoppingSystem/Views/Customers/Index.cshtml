@@ -1,0 +1,73 @@
+﻿@model IEnumerable<ShoppingSystem.Models.Entity.CustomerModel>
+
+@{
+    ViewData["Title"] = "Customer View";
+}
+
+    <h1 class="display-4 mb-4">Customers</h1>
+
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col-sm-6">
+            <span class="my-2"><a asp-action="Create">Create New</a></span>
+        </div>
+        <div class="col-sm-6 justify-content-end">
+            <form asp-action="Index" autocomplete="off" method="get" class="form-inline">
+                <div class="form-actions no-color">
+                    <p>
+                        <input type="text" class="form-control form-control-sm mr-2" name="SearchString"
+                               value="@ViewData["CurrentFilter"]" placeholder="Search by name" />
+                        <input type="submit" value="Search" class="btn btn-sm btn-outline-warning border-0" />&nbsp;|&nbsp;
+                        <a asp-action="Index" class="btn btn-sm btn-outline-warning border-0" role="button">Back to Full List</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(model => model.LastName),
+                    "Index", "Customers", new { sortOrder = ViewData["LNameSortParm"] })
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.ActionLink(Html.DisplayNameFor(model => model.Address),
+                    "Index", "Customers", new { sortOrder= ViewData["AddressSortParm"] })
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Discount)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Discount)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
